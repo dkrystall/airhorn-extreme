@@ -105,6 +105,16 @@ public class AudioSingleton : NSObject {
         componentType = kAudioUnitType_Effect;
     }
     
+    func adjustPitch(pitch: Float, rate: Float){
+        let mixer = self.engine.mainMixerNode;
+        let auTimePitch = AVAudioUnitTimePitch()
+        auTimePitch.pitch = pitch // In cents. The default value is 1.0. The range of values is -2400 to 2400
+        auTimePitch.rate = rate //The default value is 1.0. The range of supported values is 1/32 to 32.0.
+        self.engine.attach(auTimePitch)
+        engine.connect(player, to: auTimePitch, format: mixer.outputFormat(forBus: 0))
+        engine.connect(auTimePitch, to: mixer, format: mixer.outputFormat(forBus: 0))
+    }
+    
     /**
      `self._availableAudioUnits` is accessed from multiple thread contexts. Use
      a dispatch queue for synchronization.

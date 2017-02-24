@@ -34,6 +34,14 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func loopButtonPressed(_ sender: Any) {
+        
+    }
+    
+    @IBAction func singleButtonPressed(_ sender: Any) {
+        
+    }
 
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: self.view)
@@ -42,15 +50,14 @@ class ViewController: UIViewController {
             view.center = CGPoint(x: view.center.x + translation.x, y: view.center.y + translation.y)
         }
         sender.setTranslation(CGPoint.zero, in: self.view)
-        
+        //audioEngine.startPlaying()
         if toggle{
             audioEngine.startPlaying()
         } else {
             audioEngine.stopPlaying()
         }
-        
-        
     }
+    
     @IBOutlet var rateSlider: UISlider!
     @IBOutlet var frequencySlider: UISlider!
     @IBAction func sliderChanged(_ sender: UISlider) {

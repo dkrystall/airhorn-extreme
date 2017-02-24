@@ -264,6 +264,13 @@ public class AudioSingleton : NSObject {
         }
     }
     
+    public func startPlayingSingle(){
+        stateChangeQueue.sync{
+            guard !self.isPlaying else {return}
+            self.startPlaySinglePlay()
+        }
+    }
+    
     public func togglePlay() -> Bool {
         stateChangeQueue.sync {
             if self.isPlaying {
@@ -275,6 +282,35 @@ public class AudioSingleton : NSObject {
         }
         
         return isPlaying
+    }
+    
+    
+    private func startPlaySinglePlay(){
+        setSessionActive(true)
+        
+        if isEffect(){
+            scheduleEffectSinglePlay()
+        }
+        let hardwareFormat = self.engine.outputNode.outputFormat(forBus: 0)
+        self.engine.connect(self.engine.mainMixerNode, to: self.engine.outputNode, format: hardwareFormat)
+        
+        // Start the engine.
+        do {
+            try engine.start()
+        }
+        catch {
+            fatalError("Could not start engine. error: \(error).")
+        }
+        
+        if isEffect() {
+            // Start the player.
+            player.play()
+            print("Sound Played")
+        } else if isInstrument() {
+            instrumentPlayer = InstrumentPlayer.init(audioUnit: testAudioUnit)
+            instrumentPlayer?.play()
+        }
+        isPlaying = true
     }
     
     private func startPlayingInternal() {
@@ -334,6 +370,23 @@ public class AudioSingleton : NSObject {
             }
         }
     }
+    private func scheduleEffectSinglePlay(){
+        guard let file = file else {
+            fatalError("`file` must not be nil in \(#function).")
+        }
+        
+        player.scheduleFile(file, at: nil)
+        
+//        player.scheduleFile(file, at: nil) {
+//            self.stateChangeQueue.async {
+//                if self.isPlaying {
+//                    
+//                }
+//            }
+//            
+//        }
+    }
+
     
     // MARK: Preset Selection
     
@@ -460,6 +513,12 @@ internal class InstrumentPlayer : NSObject {
             scheduleInstrumentLoop()
         }
     }
+    internal func playOnce(){
+        if (false == isPlaying){
+            isDone = false
+            scheduleInstrumentPlayOnce()
+        }
+    }
     
     @discardableResult
     internal func stop()->Bool {
@@ -527,4 +586,54 @@ internal class InstrumentPlayer : NSObject {
             } // synced
         } // dispached
     } // scheduleInstrumentLoop
+    private func scheduleInstrumentPlayOnce(){
+        isPlaying = true
+        
+        let cbytes = UnsafeMutablePointer<UInt8>.allocate(capacity: 3)
+        
+        DispatchQueue.global(qos: .default).async {
+            cbytes[0] = 0xB0
+            cbytes[1] = 123
+            cbytes[2] = 0
+            self.noteBlock(AUEventSampleTimeImmediate, 0, 3, cbytes)
+            usleep(useconds_t(0.1 * 1e6))
+            
+            var releaseTime:Float = 0.05;
+            
+            usleep(useconds_t(0.1 * 1e6))
+            
+            var i = 0
+            self.synced(self.isDone as AnyObject) {
+                if self.isPlaying {
+                    // lengthen the releaseTime by 5% each time up to 10 seconds.
+                    if releaseTime < 10.0 {
+                        releaseTime = min(releaseTime * 1.05, 10.0)
+                    }
+                    
+                    cbytes[0] = 0x90
+                    cbytes[1] = UInt8(60 + i)
+                    cbytes[2] = 64
+                    self.noteBlock(AUEventSampleTimeImmediate, 0, 3, cbytes)
+                    
+                    usleep(useconds_t(0.2 * 1e6))
+                    
+                    cbytes[2] = 0    // note off
+                    self.noteBlock(AUEventSampleTimeImmediate, 0, 3, cbytes)
+                    
+                    i += 2
+                    if i >= 24 {
+                        i = -12
+                    }
+                } // while isPlaying
+                
+                cbytes[0] = 0xB0
+                cbytes[1] = 123
+                cbytes[2] = 0
+                self.noteBlock(AUEventSampleTimeImmediate, 0, 3, cbytes)
+                
+                self.isDone = true
+            } // synced
+        } // dispached
+
+    }
 }

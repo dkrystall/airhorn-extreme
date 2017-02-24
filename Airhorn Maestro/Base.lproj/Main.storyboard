@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9pe-0a-ccE">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,12 +18,12 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="air_horn" translatesAutoresizingMaskIntoConstraints="NO" id="OjN-UW-h6m">
-                                <rect key="frame" x="37.5" y="140" width="300" height="300"/>
+                                <rect key="frame" x="38" y="140" width="300" height="300"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="nMQ-tB-OkQ" appends="YES" id="SWO-bR-EQ4"/>
@@ -42,14 +43,39 @@
                                     <action selector="rateSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="CkS-Qb-vJ1"/>
                                 </connections>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XFh-4x-h9j">
+                                <rect key="frame" x="55" y="28" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="R7q-qW-LPw"/>
+                                </constraints>
+                                <state key="normal" title="Single"/>
+                                <connections>
+                                    <action selector="singleButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5S6-JC-qd5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpG-Po-ruT">
+                                <rect key="frame" x="256" y="28" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="cBr-Vx-b8J"/>
+                                </constraints>
+                                <state key="normal" title="Loop"/>
+                                <connections>
+                                    <action selector="loopButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tTV-Ll-yY7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="OjN-UW-h6m" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DKN-sr-1Rj"/>
+                            <constraint firstItem="XFh-4x-h9j" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="39" id="aM0-F3-aGD"/>
                             <constraint firstItem="OjN-UW-h6m" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-43.5" id="kw4-fQ-pNH"/>
+                            <constraint firstItem="kpG-Po-ruT" firstAttribute="baseline" secondItem="XFh-4x-h9j" secondAttribute="baseline" id="nfE-DF-Wpg"/>
+                            <constraint firstItem="kpG-Po-ruT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="q0Z-ag-uEH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kpG-Po-ruT" secondAttribute="trailing" constant="57" id="yTz-nf-Yzg"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="gc5-8N-nCS"/>
                     <connections>
                         <outlet property="frequencySlider" destination="r0U-gV-ZgD" id="d8x-kF-V5y"/>
                         <outlet property="rateSlider" destination="X6V-yy-ZM5" id="rqR-5x-5AO"/>
@@ -62,6 +88,49 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="2015.2" y="137.18140929535232"/>
+        </scene>
+        <!--Sound Grid View Controller-->
+        <scene sceneID="oF8-Ql-7qI">
+            <objects>
+                <viewController id="KpM-VG-vZv" customClass="SoundGridViewController" customModule="Airhorn_Maestro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IHm-RF-IQi"/>
+                        <viewControllerLayoutGuide type="bottom" id="ApP-xz-0At"/>
+                    </layoutGuides>
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8jm-Hm-EKp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="CjA-c5-nO9" appends="YES" id="pIF-nA-TOl"/>
+                        </connections>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="rQy-eh-K1d"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kAt-cq-yvD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <gestureRecognizer id="CjA-c5-nO9"/>
+            </objects>
+            <point key="canvasLocation" x="1636" y="836.13193403298362"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="BbP-kc-8rg">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="9pe-0a-ccE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="mcu-DH-cbz">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Jrg-g1-STa"/>
+                        <segue destination="KpM-VG-vZv" kind="relationship" relationship="viewControllers" id="Bwb-hJ-HGJ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Fd-jD-V6d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="696.79999999999995" y="486.20689655172418"/>
         </scene>
     </scenes>
     <resources>

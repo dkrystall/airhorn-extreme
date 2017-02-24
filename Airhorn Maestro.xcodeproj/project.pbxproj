@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		B620A6BC1E3AC393003BE45B /* airhorn_default.wav in Resources */ = {isa = PBXBuildFile; fileRef = B620A6BB1E3AC393003BE45B /* airhorn_default.wav */; };
+		B6915DF51E60D4D600488C1C /* SoundGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6915DF41E60D4D600488C1C /* SoundGridViewController.swift */; };
+		B6ADC4951E49241D00689EE3 /* AudioSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F602831E3308360058B2CB /* AudioSingleton.swift */; };
+		B6ADC4961E49242100689EE3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F602531E32FAB20058B2CB /* ViewController.swift */; };
+		B6ADC4971E49242300689EE3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F602531E32FAB20058B2CB /* ViewController.swift */; };
+		B6ADC4981E49242700689EE3 /* airhorn_default.wav in Resources */ = {isa = PBXBuildFile; fileRef = B620A6BB1E3AC393003BE45B /* airhorn_default.wav */; };
+		B6ADC4991E49242800689EE3 /* airhorn_default.wav in Resources */ = {isa = PBXBuildFile; fileRef = B620A6BB1E3AC393003BE45B /* airhorn_default.wav */; };
+		B6ADC49A1E49242B00689EE3 /* AudioSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F602831E3308360058B2CB /* AudioSingleton.swift */; };
+		B6ADC49B1E49242E00689EE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F602511E32FAB20058B2CB /* AppDelegate.swift */; };
+		B6ADC49C1E49242F00689EE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F602511E32FAB20058B2CB /* AppDelegate.swift */; };
 		B6F602521E32FAB20058B2CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F602511E32FAB20058B2CB /* AppDelegate.swift */; };
 		B6F602541E32FAB20058B2CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F602531E32FAB20058B2CB /* ViewController.swift */; };
 		B6F602571E32FAB20058B2CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F602551E32FAB20058B2CB /* Main.storyboard */; };
@@ -37,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		B620A6BB1E3AC393003BE45B /* airhorn_default.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = airhorn_default.wav; sourceTree = "<group>"; };
+		B6915DF41E60D4D600488C1C /* SoundGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundGridViewController.swift; sourceTree = "<group>"; };
 		B6F6024E1E32FAB20058B2CB /* Airhorn Maestro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Airhorn Maestro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F602511E32FAB20058B2CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6F602531E32FAB20058B2CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +144,7 @@
 				B6F602531E32FAB20058B2CB /* ViewController.swift */,
 				B620A6BB1E3AC393003BE45B /* airhorn_default.wav */,
 				B6F602831E3308360058B2CB /* AudioSingleton.swift */,
+				B6915DF41E60D4D600488C1C /* SoundGridViewController.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -268,6 +279,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6ADC4981E49242700689EE3 /* airhorn_default.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6ADC4991E49242800689EE3 /* airhorn_default.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +300,7 @@
 			files = (
 				B6F602841E3308360058B2CB /* AudioSingleton.swift in Sources */,
 				B6F602541E32FAB20058B2CB /* ViewController.swift in Sources */,
+				B6915DF51E60D4D600488C1C /* SoundGridViewController.swift in Sources */,
 				B6F602521E32FAB20058B2CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,6 +309,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6ADC49B1E49242E00689EE3 /* AppDelegate.swift in Sources */,
+				B6ADC4961E49242100689EE3 /* ViewController.swift in Sources */,
+				B6ADC4951E49241D00689EE3 /* AudioSingleton.swift in Sources */,
 				B6F602671E32FAB30058B2CB /* Airhorn_MaestroTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +320,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6ADC49C1E49242F00689EE3 /* AppDelegate.swift in Sources */,
+				B6ADC49A1E49242B00689EE3 /* AudioSingleton.swift in Sources */,
+				B6ADC4971E49242300689EE3 /* ViewController.swift in Sources */,
 				B6F602721E32FAB30058B2CB /* Airhorn_MaestroUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
